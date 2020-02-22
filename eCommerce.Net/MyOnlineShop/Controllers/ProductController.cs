@@ -4,11 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MyOnlineShop.DataAccess.Models;
+using MyOnlineShop.DataAccess.Repository;
 
 namespace MyOnlineShop.Controllers
 {
     public class ProductController : Controller
     {
+        IOnlineShopRepository onlineShopRepository;
+        public ProductController(IOnlineShopRepository _onlineShopRepository)
+        {
+            onlineShopRepository = _onlineShopRepository;
+        }
+
         // GET: Product
         public ActionResult Index()
         {
@@ -29,13 +37,16 @@ namespace MyOnlineShop.Controllers
 
         // POST: Product/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateProduct(IFormCollection collection)
+        [Route("AddProduct/{Product}")]
+        public IActionResult CreateProduct(Product product)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                if (ModelState.IsValid)
+                {
+                    onlineShopRepository.AddProduct(product);
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch

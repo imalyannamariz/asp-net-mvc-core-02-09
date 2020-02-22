@@ -11,5 +11,12 @@ namespace MyOnlineShop.DataAccess.Repository
         IEnumerable<Customer> SearchCustomer(int Id);
         IEnumerable<Customer> SearchCustomer(string search);
         Customer UpdateCustomer(Customer customer);
+
+        Product AddProduct(Product product);
+        IEnumerable<Product> GetProducts();
+        IEnumerable<Product> SearchProduct(int id);
+        IEnumerable<Product> SearchProduct(string search);
+        Product EditProduct(Product product);
+        Product DeleteProduct(Product product)
     }
 }

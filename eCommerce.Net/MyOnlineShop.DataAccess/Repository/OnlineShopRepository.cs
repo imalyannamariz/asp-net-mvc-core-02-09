@@ -66,5 +66,13 @@ namespace MyOnlineShop.DataAccess.Repository
             context.SaveChanges();
             return customer;
         }
+
+        public Product AddProduct(Product product)
+        {
+            context.Products.Add(product);
+            context.SaveChanges();
+
+            return product;
+        }
     }
 }
