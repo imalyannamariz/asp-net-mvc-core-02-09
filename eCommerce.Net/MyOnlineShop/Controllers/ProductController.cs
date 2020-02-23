@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyOnlineShop.DataAccess.Models;
 using MyOnlineShop.DataAccess.Repository;
+using MyOnlineShop.DataAccess.ViewModels;
 
 namespace MyOnlineShop.Controllers
 {
@@ -20,6 +21,11 @@ namespace MyOnlineShop.Controllers
         // GET: Product
         public ActionResult Index()
         {
+            var viewModel = new ProductViewModel();
+
+            var products = onlineShopRepository.GetProducts();
+
+            viewModel.Products = products;
             return View();
         }
 
